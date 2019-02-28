@@ -1,0 +1,54 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-header">
+        Menu
+        </div>
+        <ul class="list-group list-group-flush">
+            {# {% if is_granted('ROLE_USER') %} #}
+                <li class="list-group-item">
+                    <a href="{{path('app_dashboard')}}">Dashboard</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{path('book_index')}}">Books</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{path('author_index')}}">Authors</a>
+                </li>                
+                <li class="list-group-item">
+                    <a href="{{path('publisher_index')}}">Publishers</a>
+                </li>                
+                <li class="list-group-item">
+                    <a href="{{path('user_index')}}">Users</a>
+                </li>                
+                <li class="list-group-item">
+                    <a href="{{path('faculty_index')}}">Faculties</a>
+                </li>                
+                <li class="list-group-item">
+                    <a href="{{path('student_index')}}">Students</a>
+                </li>                
+                <li class="list-group-item">
+                    <a href="{{path('staff_index')}}">Staffs</a>
+                </li>                
+            {# {% endif %} #}
+        </ul>
+    </div> 
+
+    <div class="card text-center mt-3" style="width: 18rem;">
+            <div class="card-header">
+                <a href="{{ path('opac_index') }}">OPAC</a>
+            </div>
+            <ul class="list-group list-group-flush">
+                {# {% if is_granted('ROLE_USER') %} #}
+                    <li class="list-group-item">
+                        <a href="#">Borrowed Books</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">Returned Books</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">Reserved Books</a>
+                    </li>                  
+                {# {% endif %} #}
+            </ul>
+        </div> 
+{% endif %}

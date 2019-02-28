@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faculty{% endblock %}
+
+{% block body %}
+    <h1>Faculty</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ faculty.id }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ faculty.LastName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ faculty.FirstName }}</td>
+            </tr>
+            <tr>
+                <th>MiddleName</th>
+                <td>{{ faculty.MiddleName }}</td>
+            </tr>
+            <tr>
+                <th>ContactNo</th>
+                <td>{{ faculty.ContactNo }}</td>
+            </tr>
+            <tr>
+                <th>EmailAddress</th>
+                <td>{{ faculty.EmailAddress }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('faculty_index') }}">back to list</a>
+
+    <a href="{{ path('faculty_edit', {'id': faculty.id}) }}">edit</a>
+
+    {{ include('faculty/_delete_form.html.twig') }}
+{% endblock %}

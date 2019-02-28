@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opac index{% endblock %}
+
+{% block body %}
+    <h1>Opac index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>StudentId</th>
+                <th>FacultyId</th>
+                <th>StaffId</th>
+                <th>BookId</th>
+                <th>Status</th>
+                <th>DateUpdated</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for opac in opacs %}
+            <tr>
+                <td>{{ opac.id }}</td>
+                <td>{{ opac.StudentId }}</td>
+                <td>{{ opac.FacultyId }}</td>
+                <td>{{ opac.StaffId }}</td>
+                <td>{{ opac.BookId }}</td>
+                <td>{{ opac.Status }}</td>
+                <td>{{ opac.DateUpdated ? opac.DateUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('opac_show', {'id': opac.id}) }}">show</a>
+                    <a href="{{ path('opac_edit', {'id': opac.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('opac_new') }}">Create new</a>
+{% endblock %}

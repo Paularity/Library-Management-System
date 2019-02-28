@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Opac{% endblock %}
+
+{% block body %}
+    <h1>Create new Opac</h1>
+
+    {{ include('opac/_form.html.twig') }}
+
+    <a href="{{ path('opac_index') }}">back to list</a>
+{% endblock %}

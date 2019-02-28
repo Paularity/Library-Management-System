@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+        <h1>
+                Welcome 
+                {% for role in app.user.roles %} 
+                        {% if ( role == "ROLE_ADMIN" ) %}        
+                                Admin!
+                        {% elseif (role == "ROLE_LIBRARIAN" ) %}
+                                Librarian!
+                        {% endif %}
+                {% endfor %}
+        </h1>
+{% endblock %}

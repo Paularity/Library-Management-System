@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opac{% endblock %}
+
+{% block body %}
+    <h1>Opac</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ opac.id }}</td>
+            </tr>
+            <tr>
+                <th>StudentId</th>
+                <td>{{ opac.StudentId }}</td>
+            </tr>
+            <tr>
+                <th>FacultyId</th>
+                <td>{{ opac.FacultyId }}</td>
+            </tr>
+            <tr>
+                <th>StaffId</th>
+                <td>{{ opac.StaffId }}</td>
+            </tr>
+            <tr>
+                <th>BookId</th>
+                <td>{{ opac.BookId }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ opac.Status }}</td>
+            </tr>
+            <tr>
+                <th>DateUpdated</th>
+                <td>{{ opac.DateUpdated ? opac.DateUpdated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('opac_index') }}">back to list</a>
+
+    <a href="{{ path('opac_edit', {'id': opac.id}) }}">edit</a>
+
+    {{ include('opac/_delete_form.html.twig') }}
+{% endblock %}

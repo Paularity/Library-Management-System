@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+    <h1>Book</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ book.Title }}</td>
+            </tr>
+            <tr>
+                <th>AuthorID</th>
+                <td>{{ book.AuthorID }}</td>
+            </tr>
+            <tr>
+                <th>CallNumber</th>
+                <td>{{ book.CallNumber }}</td>
+            </tr>
+            <tr>
+                <th>PublisherID</th>
+                <td>{{ book.PublisherID }}</td>
+            </tr>
+            <tr>
+                <th>PublicationYear</th>
+                <td>{{ book.PublicationYear }}</td>
+            </tr>
+            <tr>
+                <th>Edition</th>
+                <td>{{ book.Edition }}</td>
+            </tr>
+            <tr>
+                <th>Volume</th>
+                <td>{{ book.Volume }}</td>
+            </tr>
+            <tr>
+                <th>Copyright</th>
+                <td>{{ book.Copyright }}</td>
+            </tr>
+            <tr>
+                <th>NumberOfPages</th>
+                <td>{{ book.NumberOfPages }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ book.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-info mb-2" href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+    {{ include('book/_delete_form.html.twig') }}
+{% endblock %}

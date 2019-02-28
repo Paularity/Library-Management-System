@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Opac{% endblock %}
+
+{% block body %}
+    <h1>Edit Opac</h1>
+
+    {{ include('opac/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('opac_index') }}">back to list</a>
+
+    {{ include('opac/_delete_form.html.twig') }}
+{% endblock %}
