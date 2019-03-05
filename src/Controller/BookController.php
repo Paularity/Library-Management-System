@@ -9,11 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/book")
- * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_LIBRARIAN')")
  */
 class BookController extends AbstractController
 {
@@ -37,6 +35,18 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('book')['image'];
+            // var_dump($file); die;
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $filename = md5( uniqid() ) . '.' . $file->guessExtension();
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
+            
+            $book->setImage($filename);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
@@ -69,6 +79,18 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('book')['image'];
+            // var_dump($file); die;
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $filename = md5( uniqid() ) . '.' . $file->guessExtension();
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
+
+            $book->setImage($filename);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('book_index', [

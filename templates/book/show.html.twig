@@ -5,6 +5,11 @@
 {% block body %}
     <h1>Book</h1>
 
+    <div class="row">
+        <div class="col-12 p-3">
+            <img style="height: 100%; width: 200px; min-width: 200px;" class="img-thumbnail" src="{{ asset('uploads/') ~ book.image }}" alt="book_image">
+        </div>
+    </div>
     <table class="table">
         <tbody>
             <tr>
@@ -51,8 +56,16 @@
                 <th>Description</th>
                 <td>{{ book.Description }}</td>
             </tr>
+            <tr>
+                <th>ISBN</th>
+                <td>{{ book.ISBN }}</td>
+            </tr>
         </tbody>
     </table>
-    <a class="btn btn-info mb-2" href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+
+    <a href="{{ path('book_index') }}">back to list</a>
+
+    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+
     {{ include('book/_delete_form.html.twig') }}
 {% endblock %}

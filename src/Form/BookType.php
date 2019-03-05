@@ -14,6 +14,7 @@ class BookType extends AbstractType
     {
         $builder
             ->add('Title')
+            ->add('ISBN')
             ->add('AuthorID')
             ->add('CallNumber')
             ->add('PublisherID')
@@ -24,7 +25,8 @@ class BookType extends AbstractType
             ->add('NumberOfPages')
             ->add('Description')
             ->add('image', FileType::class, [
-                'label' => "Book Image"
+                'label'     => "Please upload book image ",
+                'mapped'    => false
             ])
         ;
     }

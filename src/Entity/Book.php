@@ -71,6 +71,11 @@ class Book
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ISBN;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -204,6 +209,18 @@ class Book
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getISBN(): ?string
+    {
+        return $this->ISBN;
+    }
+
+    public function setISBN(string $ISBN): self
+    {
+        $this->ISBN = $ISBN;
 
         return $this;
     }

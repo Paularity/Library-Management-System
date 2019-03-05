@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>PublicationYear</th>
+                <th>ISBN</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,15 +19,15 @@
             <tr>
                 <td>{{ book.id }}</td>
                 <td>{{ book.Title }}</td>
-                <td>{{ book.PublicationYear }}</td>
+                <td>{{ book.ISBN }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('book_show', {'id': book.id}) }}">show</a>
-                    <a class="btn btn-info" href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="14">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
