@@ -14,6 +14,7 @@
                 <th>MiddleName</th>
                 <th>ContactNo</th>
                 <th>EmailAddress</th>
+                <th>Verified</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ staff.MiddleName }}</td>
                 <td>{{ staff.ContactNo }}</td>
                 <td>{{ staff.EmailAddress }}</td>
+                <td>{{ staff.verified ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('staff_show', {'id': staff.id}) }}">show</a>
                     <a href="{{ path('staff_edit', {'id': staff.id}) }}">edit</a>
@@ -33,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

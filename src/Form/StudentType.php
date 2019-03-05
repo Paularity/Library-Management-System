@@ -20,6 +20,7 @@ class StudentType extends AbstractType
             ->add('YearSection')
             ->add('ContactNo')
             ->add('EmailAddress')
+            ->add('verified')
         ;
     }
 

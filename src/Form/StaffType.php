@@ -17,6 +17,7 @@ class StaffType extends AbstractType
             ->add('MiddleName')
             ->add('ContactNo')
             ->add('EmailAddress')
+            ->add('verified')
         ;
     }
 

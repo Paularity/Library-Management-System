@@ -6,8 +6,10 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/console": "4.2.*",
+        "symfony/expression-language": "4.2.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.2.*",
+        "symfony/security-bundle": "4.2.*",
         "symfony/web-server-bundle": "4.2.*",
         "symfony/yaml": "4.2.*"
     },
@@ -66,7 +68,6 @@
         "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
         "symfony/profiler-pack": "^1.0",
-        "symfony/security-bundle": "4.2.*",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "4.2.*",
         "symfony/twig-bundle": "4.2.*",

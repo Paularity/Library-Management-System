@@ -56,6 +56,11 @@ class Student
      */
     private $EmailAddress;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $verified;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +158,18 @@ class Student
     public function setEmailAddress(string $EmailAddress): self
     {
         $this->EmailAddress = $EmailAddress;
+
+        return $this;
+    }
+
+    public function getVerified(): ?bool
+    {
+        return $this->verified;
+    }
+
+    public function setVerified(bool $verified): self
+    {
+        $this->verified = $verified;
 
         return $this;
     }
