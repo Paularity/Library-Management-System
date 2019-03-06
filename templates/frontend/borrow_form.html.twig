@@ -1,0 +1,3 @@
+<form method="post" action="{{ path('book_borrow', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to borrow this item?');">
+    <button class="btn btn-primary w-100">Borrow</button>
+</form>

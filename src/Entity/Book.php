@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,19 +24,9 @@ class Book
     private $Title;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $AuthorID;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $CallNumber;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $PublisherID;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -76,6 +68,16 @@ class Book
      */
     private $ISBN;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="books")
+     */
+    private $author;
+
+    public function __construct()
+    {
+        $this->author = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,18 +95,6 @@ class Book
         return $this;
     }
 
-    public function getAuthorID(): ?int
-    {
-        return $this->AuthorID;
-    }
-
-    public function setAuthorID(int $AuthorID): self
-    {
-        $this->AuthorID = $AuthorID;
-
-        return $this;
-    }
-
     public function getCallNumber(): ?string
     {
         return $this->CallNumber;
@@ -113,18 +103,6 @@ class Book
     public function setCallNumber(string $CallNumber): self
     {
         $this->CallNumber = $CallNumber;
-
-        return $this;
-    }
-
-    public function getPublisherID(): ?int
-    {
-        return $this->PublisherID;
-    }
-
-    public function setPublisherID(int $PublisherID): self
-    {
-        $this->PublisherID = $PublisherID;
 
         return $this;
     }
@@ -221,6 +199,32 @@ class Book
     public function setISBN(string $ISBN): self
     {
         $this->ISBN = $ISBN;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Author[]
+     */
+    public function getAuthor(): Collection
+    {
+        return $this->author;
+    }
+
+    public function addAuthor(Author $author): self
+    {
+        if (!$this->author->contains($author)) {
+            $this->author[] = $author;
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Author $author): self
+    {
+        if ($this->author->contains($author)) {
+            $this->author->removeElement($author);
+        }
 
         return $this;
     }

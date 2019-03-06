@@ -15,9 +15,7 @@ class BookType extends AbstractType
         $builder
             ->add('Title')
             ->add('ISBN')
-            ->add('AuthorID')
             ->add('CallNumber')
-            ->add('PublisherID')
             ->add('PublicationYear')
             ->add('Edition')
             ->add('Volume')

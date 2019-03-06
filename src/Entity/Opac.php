@@ -32,7 +32,7 @@ class Opac
     private $StaffId;
 
     /**
-     * @ORM\Column(type="integer", unique=true, nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $BookId;
 
@@ -45,6 +45,11 @@ class Opac
      * @ORM\Column(type="datetime")
      */
     private $DateUpdated;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $DateCreated;
 
     public function getId(): ?int
     {
@@ -119,6 +124,18 @@ class Opac
     public function setDateUpdated(\DateTimeInterface $DateUpdated): self
     {
         $this->DateUpdated = $DateUpdated;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->DateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $DateCreated): self
+    {
+        $this->DateCreated = $DateCreated;
 
         return $this;
     }

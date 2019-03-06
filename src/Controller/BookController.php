@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Author;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,6 +31,11 @@ class BookController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $author = new Author();
+        $author->setLastName("Decembrana");
+        $author->setFirstName("Christian Paul");
+        $author->setMiddleName("Medina");
+
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
@@ -46,8 +52,10 @@ class BookController extends AbstractController
             );
             
             $book->setImage($filename);
+            $book->addAuthor($author);
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($author);
             $entityManager->persist($book);
             $entityManager->flush();
 

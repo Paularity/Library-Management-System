@@ -34,6 +34,7 @@ class OpacController extends AbstractController
     {
         $opac = new Opac();
         $opac->setDateUpdated(new \DateTime());
+        $opac->setDateCreated(new \DateTime());
         $form = $this->createForm(OpacType::class, $opac);
         $form->handleRequest($request);
 
@@ -70,6 +71,9 @@ class OpacController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $opac->setDateUpdated(new \DateTime());
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('opac_index', [

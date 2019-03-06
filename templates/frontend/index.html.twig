@@ -4,4 +4,29 @@
 
 {% block body %}
     <h1>FRONTEND</h1>
+    <div class="row justify-content-center">
+        {% for book in books %}
+            <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset('uploads/') ~ book.image }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">{{ book.description }}</p>
+                        <div class="col-12 text-center">
+                            {% set found = false %}
+                            {% for borrowed in opac %}
+                                {% if borrowed.bookId == book.id and borrowed.status != "available" %}
+                                    {% set found = true %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if not found %}
+                                {{ include('frontend/borrow_form.html.twig') }}
+                                {{ include('frontend/reserve_form.html.twig') }}
+                            {% endif %}
+                            <a href="{{ path('frontend_show', {'id': book.id}) }}" class="btn btn-info mt-2 w-100">Details</a>
+                        </div>
+                    </div>
+                </div>   
+            <div style="width:10px;"></div>
+        {% endfor %}
+    </div>
 {% endblock %}

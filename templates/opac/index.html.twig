@@ -14,7 +14,6 @@
                 <th>StaffId</th>
                 <th>BookId</th>
                 <th>Status</th>
-                <th>DateUpdated</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,7 +26,6 @@
                 <td>{{ opac.StaffId }}</td>
                 <td>{{ opac.BookId }}</td>
                 <td>{{ opac.Status }}</td>
-                <td>{{ opac.DateUpdated ? opac.DateUpdated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('opac_show', {'id': opac.id}) }}">show</a>
                     <a href="{{ path('opac_edit', {'id': opac.id}) }}">edit</a>
