@@ -15,7 +15,6 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
-     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_LIBRARIAN')")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {

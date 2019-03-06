@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Student;
+use App\Entity\Staff;
+use App\Entity\Faculty;
 use App\Entity\Opac;
 use App\Form\BookType;
 use App\Repository\BookRepository;
