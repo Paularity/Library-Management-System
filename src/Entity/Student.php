@@ -61,6 +61,11 @@ class Student
      */
     private $verified;
 
+    /**
+     * @ORM\Column(type="string", length=30, unique=true)
+     */
+    private $studentNo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +175,18 @@ class Student
     public function setVerified(bool $verified): self
     {
         $this->verified = $verified;
+
+        return $this;
+    }
+
+    public function getStudentNo(): ?string
+    {
+        return $this->studentNo;
+    }
+
+    public function setStudentNo(string $studentNo): self
+    {
+        $this->studentNo = $studentNo;
 
         return $this;
     }

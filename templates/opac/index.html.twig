@@ -14,6 +14,10 @@
                 <th>StaffId</th>
                 <th>BookId</th>
                 <th>Status</th>
+                <th>DateUpdated</th>
+                <th>DateCreated</th>
+                <th>Penalty</th>
+                <th>DateDue</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +30,10 @@
                 <td>{{ opac.StaffId }}</td>
                 <td>{{ opac.BookId }}</td>
                 <td>{{ opac.Status }}</td>
+                <td>{{ opac.DateUpdated ? opac.DateUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ opac.DateCreated ? opac.DateCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ opac.penalty }}</td>
+                <td>{{ opac.DateDue ? opac.DateDue|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('opac_show', {'id': opac.id}) }}">show</a>
                     <a href="{{ path('opac_edit', {'id': opac.id}) }}">edit</a>
@@ -33,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

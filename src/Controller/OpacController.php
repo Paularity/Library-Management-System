@@ -9,11 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/opac")
- * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_LIBRARIAN')")
  */
 class OpacController extends AbstractController
 {
@@ -33,8 +31,6 @@ class OpacController extends AbstractController
     public function new(Request $request): Response
     {
         $opac = new Opac();
-        $opac->setDateUpdated(new \DateTime());
-        $opac->setDateCreated(new \DateTime());
         $form = $this->createForm(OpacType::class, $opac);
         $form->handleRequest($request);
 
@@ -71,9 +67,6 @@ class OpacController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $opac->setDateUpdated(new \DateTime());
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('opac_index', [

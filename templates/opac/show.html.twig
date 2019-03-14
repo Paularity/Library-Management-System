@@ -39,6 +39,14 @@
                 <th>DateCreated</th>
                 <td>{{ opac.DateCreated ? opac.DateCreated|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Penalty</th>
+                <td>{{ opac.penalty }}</td>
+            </tr>
+            <tr>
+                <th>DateDue</th>
+                <td>{{ opac.DateDue ? opac.DateDue|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
         </tbody>
     </table>
 

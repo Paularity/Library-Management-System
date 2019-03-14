@@ -18,6 +18,7 @@
                 <th>ContactNo</th>
                 <th>EmailAddress</th>
                 <th>Verified</th>
+                <th>StudentNo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                 <td>{{ student.ContactNo }}</td>
                 <td>{{ student.EmailAddress }}</td>
                 <td>{{ student.verified ? 'Yes' : 'No' }}</td>
+                <td>{{ student.studentNo }}</td>
                 <td>
                     <a href="{{ path('student_show', {'id': student.id}) }}">show</a>
                     <a href="{{ path('student_edit', {'id': student.id}) }}">edit</a>
@@ -41,7 +43,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="12">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

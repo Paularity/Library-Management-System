@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @Route("/homepage")
@@ -26,6 +27,17 @@ class FrontendController extends AbstractController
      */
     public function index(BookRepository $bookRepository, OpacRepository $opacRepository): Response
     {
+        $borrow_date = StrToTime ('2019-03-14 16:57:42');
+        $due_date = StrToTime ('2019-03-14 24:01:42');
+
+        $result = $due_date - $borrow_date;
+        
+        $hours = $result / ( 60 * 60 );
+
+        $penalty = 2 * ($hours);
+
+        echo "<script>console.log('Time Penalty: {$hours}, Penalty to be paid: {$penalty}.00 pesos');</script>";
+
         return $this->render('frontend/index.html.twig', [
             'books' => $bookRepository->findAll(),
             'opac'  => $opacRepository->findAll()
@@ -64,8 +76,10 @@ class FrontendController extends AbstractController
         $opac = new Opac();
         $opac->setBookId( $id );
         $opac->setStatus("reserved");
-        $opac->setDateUpdated(new \DateTime());
-        $opac->setDateCreated(new \DateTime());
+        $opac->setDateUpdated(new \DateTime()); //return date
+        $opac->setDateCreated(new \DateTime()); //borrow date
+        $opac->setDateDue(new \DateTime()); //
+        $opac->setPenalty(0.00);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($opac);
@@ -100,5 +114,13 @@ class FrontendController extends AbstractController
         return $this->render('frontend/show.html.twig', [
             'book' => $book,
         ]);
+    }
+
+    function calculate_penalty( $borrow_date, $due_date )
+    {
+        $penalty_per_hour = 2;
+        $diff = $due_date->diff($borrow_date);
+
+        return $diff->format('%a Day and %h hours');
     }
 }

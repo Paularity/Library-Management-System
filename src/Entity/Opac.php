@@ -51,6 +51,16 @@ class Opac
      */
     private $DateCreated;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=0)
+     */
+    private $penalty;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $DateDue;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,4 +149,29 @@ class Opac
 
         return $this;
     }
+
+    public function getPenalty()
+    {
+        return $this->penalty;
+    }
+
+    public function setPenalty($penalty): self
+    {
+        $this->penalty = $penalty;
+
+        return $this;
+    }
+
+    public function getDateDue(): ?\DateTimeInterface
+    {
+        return $this->DateDue;
+    }
+
+    public function setDateDue(\DateTimeInterface $DateDue): self
+    {
+        $this->DateDue = $DateDue;
+
+        return $this;
+    }
+
 }

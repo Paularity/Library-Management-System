@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190306025610 extends AbstractMigration
+final class Version20190314091429 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,11 +22,9 @@ final class Version20190306025610 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE book_author (book_id INT NOT NULL, author_id INT NOT NULL, INDEX IDX_9478D34516A2B381 (book_id), INDEX IDX_9478D345F675F31B (author_id), PRIMARY KEY(book_id, author_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE book_author ADD CONSTRAINT FK_9478D34516A2B381 FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE book_author ADD CONSTRAINT FK_9478D345F675F31B FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE book DROP author_id, DROP publisher_id, CHANGE image image VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE book CHANGE image image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE opac CHANGE student_id student_id INT DEFAULT NULL, CHANGE faculty_id faculty_id INT DEFAULT NULL, CHANGE staff_id staff_id INT DEFAULT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_B723AF3313070055 ON student (student_no)');
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
     }
 
@@ -35,9 +33,9 @@ final class Version20190306025610 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE book_author');
-        $this->addSql('ALTER TABLE book ADD author_id INT NOT NULL, ADD publisher_id INT NOT NULL, CHANGE image image VARCHAR(255) DEFAULT \'NULL\' COLLATE utf8mb4_unicode_ci');
+        $this->addSql('ALTER TABLE book CHANGE image image VARCHAR(255) DEFAULT \'NULL\' COLLATE utf8mb4_unicode_ci');
         $this->addSql('ALTER TABLE opac CHANGE student_id student_id INT DEFAULT NULL, CHANGE faculty_id faculty_id INT DEFAULT NULL, CHANGE staff_id staff_id INT DEFAULT NULL');
+        $this->addSql('DROP INDEX UNIQ_B723AF3313070055 ON student');
         $this->addSql('ALTER TABLE user CHANGE roles roles LONGTEXT NOT NULL COLLATE utf8mb4_bin');
     }
 }

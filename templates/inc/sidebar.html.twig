@@ -1,54 +1,57 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
     <div class="card text-center" style="width: 18rem;">
-        <div class="card-header">
-        Menu
+        <div class="card-header"> 
+            {% for role in app.user.roles %} 
+                {% if ( role == "ROLE_ADMIN" ) %}        
+                   <span><i class="fa fa-user"></i></span> Admin: {{ app.user.firstname }}
+                {% elseif (role == "ROLE_LIBRARIAN" ) %}
+                        Librarian!
+                {% endif %}
+            {% endfor %}
         </div>
         <ul class="list-group list-group-flush">
             {# {% if is_granted('ROLE_USER') %} #}
                 <li class="list-group-item">
-                    <a href="{{path('app_dashboard')}}">Dashboard</a>
+                    <a href="{{path('app_dashboard')}}"><span><i class="fa fa-chart-line"></i></span> Dashboard</a>
                 </li>
-                <li class="list-group-item">
-                    <a href="{{path('book_index')}}">Books</a>
-                </li>
-                <li class="list-group-item">
+                {# <li class="list-group-item">
                     <a href="{{path('author_index')}}">Authors</a>
                 </li>                
                 <li class="list-group-item">
                     <a href="{{path('publisher_index')}}">Publishers</a>
-                </li>                
+                </li> #}                
                 <li class="list-group-item">
-                    <a href="{{path('user_index')}}">Users</a>
-                </li>                
+                    <a href="{{path('user_index')}}"><span><i class="fa fa-users"></i></span> Users</a>
+                </li> 
+                {#               
                 <li class="list-group-item">
                     <a href="{{path('faculty_index')}}">Faculties</a>
-                </li>                
+                </li>
+                #}                
                 <li class="list-group-item">
-                    <a href="{{path('student_index')}}">Students</a>
-                </li>                
+                    <a href="{{path('student_index')}}"><span><i class="fa fa-graduation-cap"></i></span> Students</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('opac_index') }}"><span><i class="fa fa-address-book"></i></span> Borrowing Records</a>
+                </li>
+                {#                
                 <li class="list-group-item">
                     <a href="{{path('staff_index')}}">Staffs</a>
-                </li>                
+                </li>
+                #}
             {# {% endif %} #}
         </ul>
     </div> 
 
     <div class="card text-center mt-3" style="width: 18rem;">
-            <div class="card-header">
-                <a href="{{ path('opac_index') }}">OPAC</a>
-            </div>
-            <ul class="list-group list-group-flush">
-                {# {% if is_granted('ROLE_USER') %} #}
-                    <li class="list-group-item">
-                        <a href="#">Borrowed Books</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">Returned Books</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">Reserved Books</a>
-                    </li>                  
-                {# {% endif %} #}
-            </ul>
-        </div> 
+        <div class="card-header">
+            <span> <i class="fa fa-book"></i> </span> Book Information
+        </div>
+        <li class="list-group-item">
+            <a href="{{path('book_index')}}">Catalouging</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{path('app_dashboard')}}">Holdings</a>
+        </li>
+    </div>
 {% endif %}

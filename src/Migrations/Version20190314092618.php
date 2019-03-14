@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190228073633 extends AbstractMigration
+final class Version20190314092618 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20190228073633 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE opac (id INT AUTO_INCREMENT NOT NULL, student_id INT NOT NULL, faculty_id INT NOT NULL, staff_id INT NOT NULL, book_id INT NOT NULL, status VARCHAR(30) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE student CHANGE student_no student_no DOUBLE PRECISION NOT NULL');
+        $this->addSql('ALTER TABLE book CHANGE image image VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE opac CHANGE student_id student_id INT DEFAULT NULL, CHANGE faculty_id faculty_id INT DEFAULT NULL, CHANGE staff_id staff_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
     }
 
@@ -31,7 +33,9 @@ final class Version20190228073633 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE opac');
+        $this->addSql('ALTER TABLE book CHANGE image image VARCHAR(255) DEFAULT \'NULL\' COLLATE utf8mb4_unicode_ci');
+        $this->addSql('ALTER TABLE opac CHANGE student_id student_id INT DEFAULT NULL, CHANGE faculty_id faculty_id INT DEFAULT NULL, CHANGE staff_id staff_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE student CHANGE student_no student_no BIGINT NOT NULL');
         $this->addSql('ALTER TABLE user CHANGE roles roles LONGTEXT NOT NULL COLLATE utf8mb4_bin');
     }
 }

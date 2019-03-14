@@ -6,7 +6,6 @@ use App\Entity\Opac;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class OpacType extends AbstractType
 {
@@ -17,18 +16,11 @@ class OpacType extends AbstractType
             ->add('FacultyId')
             ->add('StaffId')
             ->add('BookId')
-            ->add('Status', ChoiceType::class,[
-                'multiple'  =>  false,
-                'expanded'  =>  true,
-                'required' => true,
-                'choices'   => [
-                    'Available' =>  "available",
-                    'Borrowed' =>  "borrowed",
-                    'Returned' =>  "returned",
-                    'Reserved' =>  "reserved",
-                    
-                ]
-            ])
+            ->add('Status')
+            ->add('DateCreated')
+            ->add('DateUpdated')
+            ->add('DateDue')
+            ->add('penalty')
         ;
     }
 
